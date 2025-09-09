@@ -30,13 +30,15 @@ O tempo que o cache permanece disponível é controlado pelo `gcTime`.
 Tempo em que os dados ficam frescos (fresh).
 Durante esse período, não ocorre refetch automático.
 
+```ts
 useQuery({
   queryKey: ["users"],
   queryFn: fetchUsers,
   staleTime: 1000 * 5, // 5 segundos
 });
+```
 
-gcTime
+`gcTime`
 
 Tempo que o dado inativo permanece em cache antes de ser limpo pelo garbage collector.
 ```ts
@@ -45,9 +47,9 @@ useQuery({
   queryFn: fetchUsers,
   gcTime: 1000 * 10, // 10 segundos
 });
-
-refetchOnWindowFocus
 ```
+
+`refetchOnWindowFocus`
 
 Controla se a query deve refazer a requisição ao usuário voltar o foco para a janela.
 ```ts
@@ -57,11 +59,11 @@ useQuery({
   refetchOnWindowFocus: true, // padrão
 });
 
-
-true: Refaz a requisição ao focar a aba.
-
-false: Não refaz automaticamente.
 ```
+
+> true: Refaz a requisição ao focar a aba.
+
+> false: Não refaz automaticamente.
 
 ---
 
