@@ -1,10 +1,10 @@
+import { Box, Button, Container, Stack } from "@mui/material";
 import { useState } from "react";
-import { UserList } from "../components/UserList";
+import { useNavigate } from "react-router";
 import { CreateUser } from "../components/CreateUser";
 import { RefreshUsers } from "../components/RefreshUsers";
 import { UserDetail } from "../components/UserDetail";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router";
+import { UserList } from "../components/UserList";
 
 export const HomePage = () => {
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
@@ -14,22 +14,9 @@ export const HomePage = () => {
   const handleUserClick = () => navigate("/profile");
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        alignItems: "center",
-        justifyContent: "space-around",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "24px",
-        }}
-      >
+    <Container maxWidth="md">
+      <h1>Home Page</h1>
+      <Stack spacing={2} direction="row" justifyContent="space-between" marginBottom={"20px"} >
         <Button variant="contained" onClick={() => setShow(!show)}>
           {show ? "Unmount Users" : "Mount Users"}
         </Button>
@@ -42,28 +29,26 @@ export const HomePage = () => {
         >
           Profile Page
         </Button>
-      </div>
+        <CreateUser />
+        <RefreshUsers />
+      </Stack>
 
-      <div style={{ display: "flex", flexDirection: "row", gap: "24px" }}>
+      <Stack spacing={2} direction="row">
         {show && (
-          <div>
+          <Box borderRight={"1px solid black"} width={"50%"}>
             <h1>Lista de Usuários</h1>
             <UserList onSelect={setSelectedUserId} />
-          </div>
+          </Box>
         )}
-        <div>
+         <Box width={"50%"}>
           <h1>Detalhes</h1>
           {selectedUserId ? (
             <UserDetail id={selectedUserId} />
           ) : (
             <p>Selecione um usuário na lista.</p>
           )}
-        </div>
-      </div>
-      <div>
-        <CreateUser />
-        <RefreshUsers />
-      </div>
-    </div>
+        </Box>
+      </Stack>
+    </Container>
   );
 };
