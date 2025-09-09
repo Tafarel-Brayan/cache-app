@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { CreateUser } from "../components/CreateUser";
@@ -11,7 +11,7 @@ export const ProfilePage = () => {
   const handleUserClick = () => navigate("/");
 
   return (
-    <div>
+    <Container maxWidth="md">
       <h2>Profile</h2>
       <Button
         variant="contained"
@@ -20,9 +20,9 @@ export const ProfilePage = () => {
         onClick={() => handleUserClick()}
       >
         Home
-      </Button>{" "}
+      </Button>
       <CreateUser />
       <pre>{JSON.stringify(cachedUsers, null, 2)}</pre>
-    </div>
+    </Container>
   );
 };
