@@ -1,4 +1,4 @@
-import { Box, Button, Container, Stack } from "@mui/material";
+import { Box, Button, Container, Divider, Stack } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { CreateUser } from "../components/CreateUser";
@@ -16,7 +16,12 @@ export const HomePage = () => {
   return (
     <Container maxWidth="md">
       <h1>Home Page</h1>
-      <Stack spacing={2} direction="row" justifyContent="space-between" marginBottom={"20px"} >
+      <Stack
+        spacing={2}
+        direction="row"
+        justifyContent="space-between"
+        marginBottom={"20px"}
+      >
         <Button variant="contained" onClick={() => setShow(!show)}>
           {show ? "Unmount Users" : "Mount Users"}
         </Button>
@@ -40,8 +45,11 @@ export const HomePage = () => {
             <UserList onSelect={setSelectedUserId} />
           </Box>
         )}
-         <Box width={"50%"}>
-          <h1>Detalhes</h1>
+        <Box width={"50%"}>
+          <h1>
+            Detalhes
+            <Divider />
+          </h1>
           {selectedUserId ? (
             <UserDetail id={selectedUserId} />
           ) : (
